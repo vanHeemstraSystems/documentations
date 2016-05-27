@@ -1,0 +1,27 @@
+{
+  "name": "documentations",
+  "version": "1.0.0",
+  "description": "Documentations",
+  "main": "documentations.js",
+  "scripts": {
+    "preinstall": "npm install -g jsdoc grunt-cli",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanHeemstraSystems/documentations.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vanHeemstraSystems/documentations/issues"
+  },
+  "homepage": "https://github.com/vanHeemstraSystems/documentations#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-jsdoc": "^2.1.0"
+  }
+}
