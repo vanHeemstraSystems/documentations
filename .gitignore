@@ -26,6 +26,9 @@ build/Release
 # Dependency directory
 node_modules
 
+# JSDoc output directory
+out
+
 # Optional npm cache directory
 .npm
 
