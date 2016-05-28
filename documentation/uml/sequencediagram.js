@@ -18,7 +18,8 @@ SequenceDiagram.prototype.append = function() {
   console.log('documentations documentation uml sequencediagram - append() called')
   // temporarily we do all the file creation and appending in here
   // move most of this logic out to its best location. e.g. at documentation level
-  var fs = self._proxies.proxy().libraries().library().fs(); // WAS require('fs');
+  //var fs = self._proxies.proxy().libraries().library().fs(); // DOESN'T WORK!!
+  var fs = require('fs');
   var path = self._proxies.proxy().libraries().library().path();
   var filePathAndName = path.join(self._filepath, self._filename);
   var stream = fs.createWriteStream(filePathAndName);

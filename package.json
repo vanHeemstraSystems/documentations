@@ -17,7 +17,9 @@
     "url": "https://github.com/vanHeemstraSystems/documentations/issues"
   },
   "homepage": "https://github.com/vanHeemstraSystems/documentations#readme",
-  "dependencies": {},
+  "dependencies": {
+    "fs": "0.0.2"
+  },
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
