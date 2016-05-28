@@ -9,17 +9,18 @@ var self = this;
  * @return {SequenceDiagram}
  */
 function SequenceDiagram() {
-  self._filename = ''; // placeholder
-  self._filepath = ''; // placeholder
-  self._proxies = {};
+  self._filename = ''; // Will be set
+  self._filepath = ''; // Will be set
+  self._proxies = {}; // Will be set
 }
 
 SequenceDiagram.prototype.append = function() {
+  console.log('documentations documentation uml sequencediagram - append() called')
   // temporarily we do all the file creation and appending in here
   // move most of this logic out to its best location. e.g. at documentation level
   var fs = self._proxies.proxy().libraries().library().fs(); // WAS require('fs');
   var path = self._proxies.proxy().libraries().library().path();
-  var filePathAndName = path.join(self._filepath,self._filename);
+  var filePathAndName = path.join(self._filepath, self._filename);
   var stream = fs.createWriteStream(filePathAndName);
   stream.once('open', function(fd) {
     var html = self.buildHtml();
@@ -29,6 +30,7 @@ SequenceDiagram.prototype.append = function() {
 }
 
 SequenceDiagram.prototype.buildHtml = function() {
+  console.log('documentations documentation uml sequencediagram - buitlHTML() called')	
   var header = '';
   var body = '';
   // concatenate header string
