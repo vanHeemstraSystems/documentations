@@ -12,6 +12,7 @@ var self = this; // Set the context locally, for access protection
 function Documentations() { 
   self._proxies = {}; // Will be set
   self._filepath = ''; // Will be set
+  self._filename = ''; // Will be set
   self._title = 'Documentations'; // Will be set
 }
 
@@ -29,6 +30,14 @@ Documentations.prototype.filepath = function() {
 
 Documentations.prototype.setfilepath = function(fnOrValue) {
   self._filepath = fnOrValue;
+}
+
+Documentations.prototype.filename = function() {
+  return self._filename;
+}
+
+Documentations.prototype.setfilename = function(fnOrValue) {
+  self._filename = fnOrValue;
 }
 
 Documentations.prototype.title = function() {
@@ -54,7 +63,7 @@ Documentations.prototype.documentation = function() {
 
   console.log('documentations documentation ++++ CHECKPOINT 111')
 
-  var _path = _proxies.proxy().libraries().library().path(); // THROWS AN ERROR [TypeError: _proxies.proxy is not a function]
+  var _path = _proxies().proxy().libraries().library().path();
 
   console.log('documentations documentation ++++ CHECKPOINT 222')
 
@@ -81,7 +90,7 @@ Documentations.prototype.append = function(header, body) {
 
   console.log('documentations - append(header, body) +++++++ CHECKPOINT 000');
 
-  var _path = _proxies.proxy().libraries().library().path();
+  var _path = _proxies().proxy().libraries().library().path();
 
   console.log('documentations - append(header, body) +++++++ CHECKPOINT 001');
 
