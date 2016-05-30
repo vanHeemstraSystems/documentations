@@ -77,9 +77,7 @@ Documentations.prototype.documentation = function() {
 
 
   // START TEST AREA
-  // var _jsdom = _proxies().proxy().libraries().library().jsdom(); // DOESN'T WORK!!
-  var _jsdom = require('jsdom');
-
+  var _jsdom = _proxies().proxy().libraries().library().jsdom();
   var _document = _jsdom.jsdom().implementation.createHTMLDocument('');
   var _script = _document.createElement("script");
 
@@ -124,8 +122,7 @@ Documentations.prototype.append = function(header, body) {
       console.log('documentations - error', err)
     }
     else { // we're all good
-      //var fs = _proxies.proxy().libraries().library().fs(); // DOESN'T WORK!!	
-      var fs = require('fs');
+      var fs = _proxies().proxy().libraries().library().fs();
       var stream = fs.createWriteStream(filePathAndName);
       stream.once('open', function(fd) {
         var html = _buildHtml;
@@ -147,9 +144,7 @@ Documentations.prototype.buildHtml = function(head, body) {
 
   // START OF TEST AREA
   var _proxies = this.proxies();
-  // var _jsdom = _proxies().proxy().libraries().library().jsdom(); // DOESN'T WORK!!
-  var _jsdom = require('jsdom');
-
+  var _jsdom = _proxies().proxy().libraries().library().jsdom();
   var _document = _jsdom.jsdom().implementation.createHTMLDocument('');
   //_document.head.appendChild(head);
   //_document.body.appendChild(body);
