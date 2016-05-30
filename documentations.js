@@ -60,21 +60,16 @@ Documentations.prototype.documentation = function() {
   var _filepath = this.filepath();
   var _title = this.title();
   var _linktitle = 'Documentation';
-
-  console.log('documentations documentation ++++ CHECKPOINT 111')
-
   var _path = _proxies().proxy().libraries().library().path();
-
-  console.log('documentations documentation ++++ CHECKPOINT 222')
-
   this._documentationsdocumentation = new DocumentationsDocumentation();
   this._documentationsdocumentation.setfilename(_document);
   this._documentationsdocumentation.setfilepath(_path.join(_filepath, _directory));
   this._documentationsdocumentation.setproxies(_proxies);
-  this._documentationsdocumentation.append = this.append();
-  this._documentationsdocumentation.buildHtml = this.buildHtml();
-  this._documentationsdocumentation.ensureExists = this.ensureExists();
+  this._documentationsdocumentation.append = this.append; // Assign the function, don't call it
+  this._documentationsdocumentation.buildHtml = this.buildHtml; // Assign the function, don't call it
+  this._documentationsdocumentation.ensureExists = this.ensureExists; // Assign the function, don't call it
 
+  // Works up to here!
 
   // START TEST AREA
   var _jsdom = _proxies().proxy().libraries().library().jsdom();

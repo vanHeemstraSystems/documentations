@@ -69,9 +69,9 @@ Documentation.prototype.uml = function() {
   this._documentationuml.setfilepath(_path.join(_filepath, _directory));
   this._documentationuml.setproxies(_proxies);
 
-  this._documentationnuml.append = this.append();
-  this._documentationnuml.buildHtml = this.buildHtml();
-  this._documentationnuml.ensureExists = this.ensureExists();
+  this._documentationnuml.append = this.append; // Assign function, don't call it
+  this._documentationnuml.buildHtml = this.buildHtml; // Assign function, don't call it
+  this._documentationnuml.ensureExists = this.ensureExists; // Assign function, don't call it
 
   this._documentationnuml.append('<title>' + _title + '</title>',
   	'<h1>' + _title + '</h1><ul><li><a href="./' + _directory + '/' + _document + '">' + _linktitle + '</a></li></ul>');
