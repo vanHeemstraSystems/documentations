@@ -73,26 +73,31 @@ Documentations.prototype.documentation = function() {
 
   // START TEST AREA
   var _jsdom = _proxies().proxy().libraries().library().jsdom();
-  var _document = _jsdom.jsdom().implementation.createHTMLDocument('');
-  var _script = _document.createElement("script");
+  var _htmlDocument = _jsdom.jsdom().implementation.createHTMLDocument('');
+  //var _script = _htmlDocument.createElement("script");
 
   // Create a Node that contains the Title to go into the Head of the HTML Document
-  var _title = _document.createElement("title");
-  console.log('+++++++++++++++++++++++++++++++ _title: ', _title)
-
+  var _htmlTitle = _htmlDocument.createElement("title");
+  _htmlTitle.innerHTML = _title;
+  console.log('+++++++++++++++++++++++++++++++ _htmlTitle: ', _htmlTitle)
+  _head = _htmlTitle; // Possible to add more Elements to head 
+ 
   // Create a Node that contains the Links to go into the Body of the HTML Document 
-  var _ul = _document.createElement("ul");
+  var _ul = _htmlDocument.createElement("ul");
   console.log('+++++++++++++++++++++++++++++++ _ul: ', _ul)
+  _body = _ul; // Possible to add more Elements to body
 
   // END TEST AREA
 
-  this._documentationsdocumentation.append('<title>' + _title + '</title>','<h1>' + _title + '</h1><ul><li><a href="./' + _directory + '/' + _document + '">' + _linktitle + '</a></li></ul>');
+  // OLD this._documentationsdocumentation.append('<title>' + _title + '</title>','<h1>' + _title + '</h1><ul><li><a href="./' + _directory + '/' + _document + '">' + _linktitle + '</a></li></ul>');
+  this._documentationsdocumentation.append(_head, _body);
+
   return this._documentationsdocumentation;
 }
 
-Documentations.prototype.append = function(header, body) {
-  console.log('documentations append called')
-  var _header = typeof header !== 'undefined' ? header : '';
+Documentations.prototype.append = function(head, body) {
+  console.log('documentations append(head, body) called')
+  var _head = typeof head !== 'undefined' ? head : '';
   var _body = typeof body !== 'undefined' ? body : '';
   var _proxies = this.proxies();
   var _filepath = this.filepath();
@@ -100,17 +105,20 @@ Documentations.prototype.append = function(header, body) {
   // temporarily we do all the file creation and appending in here
   // move most of this logic out to its best location. e.g. at documentation level
 
-  console.log('documentations - append(header, body) +++++++ CHECKPOINT 000');
+  console.log('documentations - append(head, body) +++++++ CHECKPOINT 000');
 
   var _path = _proxies().proxy().libraries().library().path();
 
-  console.log('documentations - append(header, body) +++++++ CHECKPOINT 001');
+  console.log('documentations - append(head, body) +++++++ CHECKPOINT 001');
 
   var filePathAndName = _path.join(_filepath, _filename);
 
-  var _buildHtml = this.buildHtml(_header, _body);
+  console.log('documentations - append(head, body) _head: ', _head);
+  console.log('documentations - append(head, body) _body: ', _body);  
 
-  console.log('documentations - append(header, body) +++++++ CHECKPOINT 003');
+  var _buildHtml = this.buildHtml(_head, _body);
+
+  console.log('documentations - append(head, body) +++++++ CHECKPOINT 003');
 
   this.ensureExists(_filepath, 0744, function(err) {
     if (err) { // handle folder creation error
@@ -120,13 +128,14 @@ Documentations.prototype.append = function(header, body) {
       var fs = _proxies().proxy().libraries().library().fs();
       var stream = fs.createWriteStream(filePathAndName);
       stream.once('open', function(fd) {
-        var html = _buildHtml;
+      	console.log('documentations - append(head, body) _buildHtml: ', _buildHtml);
+        var html = _buildHtml.innerHTML; // Parses DOM Document to String ... Currently results in an empty string FIX IT!
 
         stream.end(html);
       });    	
     }
   });
-  console.log('documentations - append(header, body) +++++++ CHECKPOINT 004');
+  console.log('documentations - append(head, body) +++++++ CHECKPOINT 004');
 }
 
 Documentations.prototype.buildHtml = function(head, body) {
@@ -136,22 +145,19 @@ Documentations.prototype.buildHtml = function(head, body) {
   // concatenate head string
   // concatenate body string
 
-
   // START OF TEST AREA
   var _proxies = this.proxies();
   var _jsdom = _proxies().proxy().libraries().library().jsdom();
-  var _document = _jsdom.jsdom().implementation.createHTMLDocument('');
-  //_document.head.appendChild(head);
-  //_document.body.appendChild(body);
-  //For example: _document.body.setAttribute('onscroll', 'foo');
-
-  console.log('documentations - buildHtml(head, body) _document: ', _document)
-
+  var _htmlDocument = _jsdom.jsdom().implementation.createHTMLDocument('');
+  _htmlDocument.head.appendChild(head);
+  _htmlDocument.body.appendChild(body);
+  //For example: _htmlDocument.body.setAttribute('onscroll', 'foo');
+  console.log('documentations - buildHtml(head, body) _htmlDocument: ', _htmlDocument)
   // END OF TEST AREA
 
-
-  return '<!DOCTYPE html>'
-       + '<html><head>' + head + '</head><body>' + body + '</body></html>';
+  //ORIGINAL return '<!DOCTYPE html>'
+  //     + '<html><head>' + head + '</head><body>' + body + '</body></html>';
+  return _htmlDocument;
 };
 
 // This function is documented here:
