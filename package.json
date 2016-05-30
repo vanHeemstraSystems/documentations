@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/vanHeemstraSystems/documentations#readme",
   "dependencies": {
-    "fs": "0.0.2"
+    "fs": "0.0.2",
+    "jsdom": "^9.2.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

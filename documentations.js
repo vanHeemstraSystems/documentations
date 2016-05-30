@@ -97,6 +97,9 @@ Documentations.prototype.append = function(header, body) {
   var filePathAndName = _path.join(_filepath, _filename);
 
   var _buildHtml = this.buildHtml(_header, _body);
+
+  console.log('documentations - append(header, body) +++++++ CHECKPOINT 003');
+
   this.ensureExists(_filepath, 0744, function(err) {
     if (err) { // handle folder creation error
       console.log('documentations - error', err)
@@ -112,16 +115,35 @@ Documentations.prototype.append = function(header, body) {
       });    	
     }
   });
+
+  console.log('documentations - append(header, body) +++++++ CHECKPOINT 004');  
 }
 
-Documentations.prototype.buildHtml = function(header, body) {
-  console.log('documentations - buildHtml(header, body) called')
-  var header = typeof header !== 'undefined' ? header : '';
+Documentations.prototype.buildHtml = function(head, body) {
+  console.log('documentations - buildHtml(head, body) called')
+  var head = typeof head !== 'undefined' ? head : '';
   var body = typeof body !== 'undefined' ? body : '';
-  // concatenate header string
+  // concatenate head string
   // concatenate body string
+
+
+  // START OF TEST AREA
+  var _proxies = this.proxies();
+  // var _jsdom = _proxies().proxy().libraries().library().jsdom(); // DOESN'T WORK!!
+  var _jsdom = require('jsdom');
+
+  var _document = _jsdom.jsdom().implementation.createHTMLDocument('');
+  _document.head.append(head);
+  _document.body.append(body);
+  //For example: _document.body.setAttribute('onscroll', 'foo');
+
+  console.log('documentations - buildHtml(head, body) _document: ', _document)
+
+  // END OF TEST AREA
+
+
   return '<!DOCTYPE html>'
-       + '<html><header>' + header + '</header><body>' + body + '</body></html>';
+       + '<html><head>' + head + '</head><body>' + body + '</body></html>';
 };
 
 // This function is documented here:
