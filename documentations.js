@@ -74,6 +74,25 @@ Documentations.prototype.documentation = function() {
   this._documentationsdocumentation.append = this.append();
   this._documentationsdocumentation.buildHtml = this.buildHtml();
   this._documentationsdocumentation.ensureExists = this.ensureExists();
+
+
+  // START TEST AREA
+  // var _jsdom = _proxies().proxy().libraries().library().jsdom(); // DOESN'T WORK!!
+  var _jsdom = require('jsdom');
+
+  var _document = _jsdom.jsdom().implementation.createHTMLDocument('');
+  var _script = _document.createElement("script");
+
+  // Create a Node that contains the Title to go into the Head of the HTML Document
+  var _title = _document.createElement("title");
+  console.log('+++++++++++++++++++++++++++++++ _title: ', _title)
+
+  // Create a Node that contains the Links to go into the Body of the HTML Document 
+  var _ul = _document.createElement("ul");
+  console.log('+++++++++++++++++++++++++++++++ _ul: ', _ul)
+
+  // END TEST AREA
+
   this._documentationsdocumentation.append('<title>' + _title + '</title>','<h1>' + _title + '</h1><ul><li><a href="./' + _directory + '/' + _document + '">' + _linktitle + '</a></li></ul>');
   return this._documentationsdocumentation;
 }
@@ -115,8 +134,7 @@ Documentations.prototype.append = function(header, body) {
       });    	
     }
   });
-
-  console.log('documentations - append(header, body) +++++++ CHECKPOINT 004');  
+  console.log('documentations - append(header, body) +++++++ CHECKPOINT 004');
 }
 
 Documentations.prototype.buildHtml = function(head, body) {
@@ -133,8 +151,8 @@ Documentations.prototype.buildHtml = function(head, body) {
   var _jsdom = require('jsdom');
 
   var _document = _jsdom.jsdom().implementation.createHTMLDocument('');
-  _document.head.append(head);
-  _document.body.append(body);
+  //_document.head.appendChild(head);
+  //_document.body.appendChild(body);
   //For example: _document.body.setAttribute('onscroll', 'foo');
 
   console.log('documentations - buildHtml(head, body) _document: ', _document)
