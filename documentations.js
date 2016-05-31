@@ -10,10 +10,30 @@ var self = this; // Set the context locally, for access protection
  * @return {Documentations}
  */
 function Documentations() { 
+  self._directory = 'documentation';
+  self._document = 'documentation.html';	
   self._proxies = {}; // Will be set
   self._filepath = ''; // Will be set
   self._filename = ''; // Will be set
+  self._linktitle = 'Documentation';  
+  self._style = 'body { background-color: #ffffff; }'; // Default
   self._title = 'Documentations'; // Will be set
+}
+
+Documentations.prototype.directory = function() {
+  return self._directory;
+}
+
+Documentations.prototype.setdirectory = function(fnOrValue) {
+  self._directory = fnOrValue;
+}
+
+Documentations.prototype.document = function() {
+  return self._document;
+}
+
+Documentations.prototype.setdocument = function(fnOrValue) {
+  self._document = fnOrValue;
 }
 
 Documentations.prototype.proxies = function() {
@@ -40,6 +60,22 @@ Documentations.prototype.setfilename = function(fnOrValue) {
   self._filename = fnOrValue;
 }
 
+Documentations.prototype.linktitle = function() {
+  return self._linktitle;
+}
+
+Documentations.prototype.setlinktitle = function(fnOrValue) {
+  self._linktitle = fnOrValue;
+}
+
+Documentations.prototype.style = function() {
+  return self._style;
+}
+
+Documentations.prototype.setstyle= function(fnOrValue) {
+  self._style = fnOrValue;
+}
+
 Documentations.prototype.title = function() {
   return self._title;
 }
@@ -54,12 +90,15 @@ Documentations.prototype.settitle = function(fnOrValue) {
  */
 Documentations.prototype.documentation = function() {
   console.log('documentations documentation called')
-  var _document = 'documentation.html';
-  var _directory = 'documentation';
+  var _document = this.document();
+  var _directory = this.directory();
   var _proxies = this.proxies();
   var _filepath = this.filepath();
   var _title = this.title();
-  var _linktitle = 'Documentation';
+  var _style = this.style();
+  var _linktitle = this.linktitle();
+  var _headArray = [];
+  var _bodyArray = [];
   var _path = _proxies().proxy().libraries().library().path();
   this._documentationsdocumentation = new DocumentationsDocumentation();
   this._documentationsdocumentation.setfilename(_document);
@@ -69,56 +108,64 @@ Documentations.prototype.documentation = function() {
   this._documentationsdocumentation.buildHtml = this.buildHtml; // Assign the function, don't call it
   this._documentationsdocumentation.ensureExists = this.ensureExists; // Assign the function, don't call it
 
-  // Works up to here!
-
-  // START TEST AREA
   var _jsdom = _proxies().proxy().libraries().library().jsdom();
   var _htmlDocument = _jsdom.jsdom().implementation.createHTMLDocument('');
   //var _script = _htmlDocument.createElement("script");
 
   // Create a Node that contains the Title to go into the Head of the HTML Document
-  var _htmlTitle = _htmlDocument.createElement("title");
-  _htmlTitle.innerHTML = _title;
-  console.log('+++++++++++++++++++++++++++++++ _htmlTitle: ', _htmlTitle)
-  _head = _htmlTitle; // Possible to add more Elements to head 
+  var _titleElem = _htmlDocument.createElement("title");
+  _titleElem.innerHTML = _title;
+  console.log('documentations - documentation _titleElem: ',
+    _titleElem)
+
+  var _styleElem = _htmlDocument.createElement('style');
+  _styleElem.innerHTML = _style;
+  console.log('documentations - documentation _styleElem: ',
+    _styleElem)
+
+  console.log('documentations - documentation _titleElem: ', _titleElem)
+  _headArray.push(_titleElem); 
+  _headArray.push(_styleElem); // Possible to add more Elements to head 
  
   // Create a Node that contains the Links to go into the Body of the HTML Document 
-  var _ul = _htmlDocument.createElement("ul");
-  console.log('+++++++++++++++++++++++++++++++ _ul: ', _ul)
-  _body = _ul; // Possible to add more Elements to body
+  var _ulElem = _htmlDocument.createElement('ul');
+  console.log('documentations - documentation _ulElem: ',
+    _ulElem)
+  var _liElem = _htmlDocument.createElement('li');
+  console.log('documentations - documentation _liElem: ',
+    _liElem)
+  var _aElem = _htmlDocument.createElement('a');
+  console.log('documentations - documentation _aElem: ',
+    _aElem)
+  _aElem.setAttribute("href", "./" + _directory + "/" + _document);
+  _aElem.innerHTML = _linktitle;
+  _liElem.appendChild(_aElem);
+  _ulElem.appendChild(_liElem);
 
-  // END TEST AREA
+  _bodyArray.push(_ulElem); // Possible to add more Elements to body
 
-  // OLD this._documentationsdocumentation.append('<title>' + _title + '</title>','<h1>' + _title + '</h1><ul><li><a href="./' + _directory + '/' + _document + '">' + _linktitle + '</a></li></ul>');
-  this._documentationsdocumentation.append(_head, _body);
+  this._documentationsdocumentation.append(_headArray, _bodyArray);
 
   return this._documentationsdocumentation;
 }
 
-Documentations.prototype.append = function(head, body) {
-  console.log('documentations append(head, body) called')
-  var _head = typeof head !== 'undefined' ? head : '';
-  var _body = typeof body !== 'undefined' ? body : '';
+Documentations.prototype.append = function(headArray, bodyArray) {
+  console.log('documentations append(headArray, bodyArray) called')
+  var _headArray = typeof headArray !== 'undefined' ? headArray : [];
+  var _bodyArray = typeof bodyArray !== 'undefined' ? bodyArray : [];
   var _proxies = this.proxies();
   var _filepath = this.filepath();
   var _filename = this.filename();
   // temporarily we do all the file creation and appending in here
   // move most of this logic out to its best location. e.g. at documentation level
-
-  console.log('documentations - append(head, body) +++++++ CHECKPOINT 000');
-
   var _path = _proxies().proxy().libraries().library().path();
-
-  console.log('documentations - append(head, body) +++++++ CHECKPOINT 001');
 
   var filePathAndName = _path.join(_filepath, _filename);
 
-  console.log('documentations - append(head, body) _head: ', _head);
-  console.log('documentations - append(head, body) _body: ', _body);  
+  console.log('documentations - append(headArray, bodyArray) _headArray: ', _headArray);
+  console.log('documentations - append(headArray, bodyArray) _bodyArray: ', _bodyArray);  
 
-  var _buildHtml = this.buildHtml(_head, _body);
-
-  console.log('documentations - append(head, body) +++++++ CHECKPOINT 003');
+  var _buildHtml = this.buildHtml(_headArray, _bodyArray);
 
   this.ensureExists(_filepath, 0744, function(err) {
     if (err) { // Handle folder creation error
@@ -128,44 +175,41 @@ Documentations.prototype.append = function(head, body) {
       var fs = _proxies().proxy().libraries().library().fs();
       var stream = fs.createWriteStream(filePathAndName);
       stream.once('open', function(fd) {
-      	console.log('documentations - append(head, body) _buildHtml: ', _buildHtml);
+      	console.log('documentations - append(headArray, bodyArray) _buildHtml: ', _buildHtml);
         var _jsdom = _proxies().proxy().libraries().library().jsdom();
         var _html = _jsdom.serializeDocument(_buildHtml); // Converts DOM Object to HTML as a String
-        console.log('documentations - append(head, body) _html: ', _html);
+        console.log('documentations - append(headArray, bodyArray) _html: ', _html);
         stream.end(_html);
       });    	
     }
   });
-  console.log('documentations - append(head, body) +++++++ CHECKPOINT 004');
 }
 
-Documentations.prototype.buildHtml = function(head, body) {
-  console.log('documentations - buildHtml(head, body) called')
-  var _head = typeof head !== 'undefined' ? head : '';
-  var _body = typeof body !== 'undefined' ? body : '';
+Documentations.prototype.buildHtml = function(headArray, bodyArray) {
+  console.log('documentations - buildHtml(headArray, bodyArray) called')
+  var _headArray = typeof headArray !== 'undefined' ? headArray : [];
+  var _bodyArray = typeof bodyArray !== 'undefined' ? bodyArray : [];
   // concatenate head string
   // concatenate body string
 
-  // START OF TEST AREA
   var _proxies = this.proxies();
   var _jsdom = _proxies().proxy().libraries().library().jsdom();
   var _htmlDocument = _jsdom.jsdom().implementation.createHTMLDocument('');
   _htmlDocument.head.innerHTML = ''; // Removes the default title element
 
-  console.log('documentations - buildHtml(head, body) _head: ', _head);
-  console.log('documentations - buildHtml(head, body) _head.innerHTML: ', _head.innerHTML); // FOR TEST ONLY: Works!
-  //console.log('documentations - buildHtml(head, body) _head.text(): ', _head.text()); // FOR TEST ONLY: Doesn't work
+  console.log('documentations - buildHtml(headArray, bodyArray) _headArray: ', _headArray);
+  console.log('documentations - buildHtml(headArray, bodyArray) _bodyArray: ', _bodyArray);
 
-  console.log('documentations - buildHtml(head, body) _body: ', _body);
-  console.log('documentations - buildHtml(head, body) _body.innerHTML: ', _body.innerHTML); // FOR TEST ONLY: Works! 
-  _htmlDocument.head.appendChild(head);
-  _htmlDocument.body.appendChild(body);
-  //For example: _htmlDocument.body.setAttribute('onscroll', 'foo');
-  console.log('documentations - buildHtml(head, body) _htmlDocument: ', _htmlDocument)
-  // END OF TEST AREA
+  _headArray.forEach( function(entry) {
+    _htmlDocument.head.appendChild(entry);
+  }, _htmlDocument);
 
-  //ORIGINAL return '<!DOCTYPE html>'
-  //     + '<html><head>' + head + '</head><body>' + body + '</body></html>';
+  _bodyArray.forEach( function(entry) {
+    _htmlDocument.body.appendChild(entry);
+  }, _htmlDocument);
+
+  console.log('documentations - buildHtml(headArray, bodyArray) _htmlDocument: ', _htmlDocument)
+
   return _htmlDocument;
 };
 
