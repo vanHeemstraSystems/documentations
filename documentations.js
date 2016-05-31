@@ -150,12 +150,14 @@ Documentations.prototype.buildHtml = function(head, body) {
   var _proxies = this.proxies();
   var _jsdom = _proxies().proxy().libraries().library().jsdom();
   var _htmlDocument = _jsdom.jsdom().implementation.createHTMLDocument('');
+  _htmlDocument.head.innerHTML = ''; // Removes the default title element
+
   console.log('documentations - buildHtml(head, body) _head: ', _head);
   console.log('documentations - buildHtml(head, body) _head.innerHTML: ', _head.innerHTML); // FOR TEST ONLY: Works!
   //console.log('documentations - buildHtml(head, body) _head.text(): ', _head.text()); // FOR TEST ONLY: Doesn't work
 
   console.log('documentations - buildHtml(head, body) _body: ', _body);
-  console.log('documentations - buildHtml(head, body) _body.innerHTML: ', _body.innerHTML); // FOR TEST ONLY: Works!  
+  console.log('documentations - buildHtml(head, body) _body.innerHTML: ', _body.innerHTML); // FOR TEST ONLY: Works! 
   _htmlDocument.head.appendChild(head);
   _htmlDocument.body.appendChild(body);
   //For example: _htmlDocument.body.setAttribute('onscroll', 'foo');
