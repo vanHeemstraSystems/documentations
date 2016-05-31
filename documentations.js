@@ -121,17 +121,18 @@ Documentations.prototype.append = function(head, body) {
   console.log('documentations - append(head, body) +++++++ CHECKPOINT 003');
 
   this.ensureExists(_filepath, 0744, function(err) {
-    if (err) { // handle folder creation error
+    if (err) { // Handle folder creation error
       console.log('documentations - error', err)
     }
-    else { // we're all good
+    else { // We're all good
       var fs = _proxies().proxy().libraries().library().fs();
       var stream = fs.createWriteStream(filePathAndName);
       stream.once('open', function(fd) {
       	console.log('documentations - append(head, body) _buildHtml: ', _buildHtml);
-        var html = _buildHtml.innerHTML; // Parses DOM Document to String ... Currently results in an empty string FIX IT!
-
-        stream.end(html);
+        var _jsdom = _proxies().proxy().libraries().library().jsdom();
+        var _html = _jsdom.serializeDocument(_buildHtml); // Converts DOM Object to HTML as a String
+        console.log('documentations - append(head, body) _html: ', _html);
+        stream.end(_html);
       });    	
     }
   });
@@ -140,8 +141,8 @@ Documentations.prototype.append = function(head, body) {
 
 Documentations.prototype.buildHtml = function(head, body) {
   console.log('documentations - buildHtml(head, body) called')
-  var head = typeof head !== 'undefined' ? head : '';
-  var body = typeof body !== 'undefined' ? body : '';
+  var _head = typeof head !== 'undefined' ? head : '';
+  var _body = typeof body !== 'undefined' ? body : '';
   // concatenate head string
   // concatenate body string
 
@@ -149,6 +150,12 @@ Documentations.prototype.buildHtml = function(head, body) {
   var _proxies = this.proxies();
   var _jsdom = _proxies().proxy().libraries().library().jsdom();
   var _htmlDocument = _jsdom.jsdom().implementation.createHTMLDocument('');
+  console.log('documentations - buildHtml(head, body) _head: ', _head);
+  console.log('documentations - buildHtml(head, body) _head.innerHTML: ', _head.innerHTML); // FOR TEST ONLY: Works!
+  //console.log('documentations - buildHtml(head, body) _head.text(): ', _head.text()); // FOR TEST ONLY: Doesn't work
+
+  console.log('documentations - buildHtml(head, body) _body: ', _body);
+  console.log('documentations - buildHtml(head, body) _body.innerHTML: ', _body.innerHTML); // FOR TEST ONLY: Works!  
   _htmlDocument.head.appendChild(head);
   _htmlDocument.body.appendChild(body);
   //For example: _htmlDocument.body.setAttribute('onscroll', 'foo');
