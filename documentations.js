@@ -157,6 +157,21 @@ Documentations.prototype.documentation = function() {
 
   _styleArray.push(_styleElem);
 
+  /* Style: Bootstrap - sticky footer */
+  var _styleElem = _htmlDocument.createElement('link');
+  console.log('systems system execute - documentation _styleElem: ',
+    _styleElem)
+  _styleElem.setAttribute("rel",
+    "stylesheet");
+  _styleElem.setAttribute("type",
+    "text/css");
+  _styleElem.setAttribute("href",
+    "../../../assets/asset/bootstrap/dist/css/sticky-footer-navbar.css");
+  console.log('systems system execute - documentation _styleElem: ',
+    _styleElem)
+
+  _styleArray.push(_styleElem);
+
   /* Style: inline */
   var _styleElem = _htmlDocument.createElement('link');
   console.log('documentations documentation - documentation _styleElem: ',
@@ -256,10 +271,40 @@ Documentations.prototype.documentation = function() {
 
   _bodyArray.push(_footerElem);
 
+  /* Scripts, put at bottom of body to make the page load faster */
 
+  /* Script: JQuery */
+  var _scriptElem = _htmlDocument.createElement('script');
+  _scriptElem.setAttribute("type", "text/javascript");
+  _scriptElem.setAttribute("src", "../../../assets/asset/jquery/dist/js/jquery.min.js");
+  console.log('documentations documentation - documentation _scriptElem: ',
+    _scriptElem)
 
+  _scriptArray.push(_scriptElem);
 
+  /* Script: Tether */
+  var _scriptElem = _htmlDocument.createElement('script');
+  _scriptElem.setAttribute("type", "text/javascript");
+  _scriptElem.setAttribute("src", "../../../assets/asset/tether/dist/js/tether.min.js");
+  console.log('documentations documentation - documentation _scriptElem: ',
+    _scriptElem)
 
+  _scriptArray.push(_scriptElem);
+
+  /* Script: Bootstrap */
+  var _scriptElem = _htmlDocument.createElement('script');
+  _scriptElem.setAttribute("type", "text/javascript");
+  _scriptElem.setAttribute("src", "../../../assets/asset/bootstrap/dist/js/bootstrap.min.js");
+  console.log('documentations documentation - documentation _scriptElem: ',
+    _scriptElem)
+
+  _scriptArray.push(_scriptElem);
+
+  _scriptArray.forEach(function(scriptElem) {
+    _bodyArray.push(scriptElem);
+  }, _bodyArray);
+
+  this._documentationsdocumentation.append(_headArray, _bodyArray);
 
   return this._documentationsdocumentation;
 }
