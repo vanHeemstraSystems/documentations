@@ -10,12 +10,12 @@ var self = this; // Set the context locally, for access protection
  * @return {Documentations}
  */
 function Documentations() { 
-  self._directory = 'documentation';
-  self._document = 'documentation.html';	
+  self._directory = 'documentations';
+  self._document = 'documentations.html';	
   self._proxies = {}; // Will be set
   self._filepath = ''; // Will be set
   self._filename = ''; // Will be set
-  self._linktitle = 'Documentation';  
+  self._linktitle = 'Documentation'; 
   self._style = 'body { background-color: #ffffff; }'; // Default
   self._title = 'Documentations'; // Will be set
 }
