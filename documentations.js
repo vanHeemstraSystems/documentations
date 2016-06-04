@@ -239,6 +239,25 @@ Documentations.prototype.documentation = function() {
   console.log('documentations documentation - documentation _bodyArray: ',
     _bodyArray)
 
+  /* Footer */
+  var _footerElem = _htmlDocument.createElement("footer");
+  _footerElem.setAttribute("class",
+    "footer");
+  var _divElem = _htmlDocument.createElement("div");
+  _divElem.setAttribute("class",
+    "container");
+  var _spanElem = _htmlDocument.createElement("span");
+  _spanElem.setAttribute("class",
+    "text_muted");
+  _spanElem.innerHTML = "Generated on: " +new Date;
+
+  _divElem.appendChild(_spanElem);
+  _footerElem.appendChild(_divElem);
+
+  _bodyArray.push(_footerElem);
+
+
+
 
 
 
