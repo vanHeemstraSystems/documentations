@@ -97,12 +97,22 @@ Documentations.prototype.documentation = function() {
   var _title = this.title();
   var _style = this.style();
   var _linktitle = this.linktitle();
+  var _styleArray = [];
+  var _scriptArray = [];  
   var _headArray = [];
   var _bodyArray = [];
   var _path = _proxies().proxy().libraries().library().path();
+
   this._documentationsdocumentation = new DocumentationsDocumentation();
+
+  /* START OPENING UP ALL BELOW LOGIC STEP BY STEP */
+
+  console.log('documentations documentation - _document: ', _document) // 'documentation.html' 
   this._documentationsdocumentation.setfilename(_document);
+
+  console.log('documentations documentation - _path.join(_filepath, _directory): ', _path.join(_filepath, _directory))  
   this._documentationsdocumentation.setfilepath(_path.join(_filepath, _directory));
+
   this._documentationsdocumentation.setproxies(_proxies);
   this._documentationsdocumentation.append = this.append; // Assign the function, don't call it
   this._documentationsdocumentation.buildHtml = this.buildHtml; // Assign the function, don't call it
@@ -110,13 +120,29 @@ Documentations.prototype.documentation = function() {
 
   var _jsdom = _proxies().proxy().libraries().library().jsdom();
   var _htmlDocument = _jsdom.jsdom().implementation.createHTMLDocument('');
-  //var _script = _htmlDocument.createElement("script");
 
-  // Create a Node that contains the Title to go into the Head of the HTML Document
-  var _titleElem = _htmlDocument.createElement("title");
+  /* Title: System */
+  var _titleElem = _htmlDocument.createElement('title');
   _titleElem.innerHTML = _title;
-  console.log('documentations - documentation _titleElem: ',
+  console.log('documentations documentation - documentation _titleElem: ',
     _titleElem)
+
+  /* Style: Tether */
+  var _styleElem = _htmlDocument.createElement('link');
+  console.log('documentations documentation - documentation _styleElem: ',
+    _styleElem)
+  _styleElem.setAttribute("rel",
+    "stylesheet");
+  _styleElem.setAttribute("type",
+    "text/css");
+  _styleElem.setAttribute("href",
+    "../../../assets/asset/tether/dist/css/tether.min.css");
+  console.log('++++++++++++++ documentations documentation - documentation _styleElem: ',
+    _styleElem)
+
+  _styleArray.push(_styleElem);
+
+/*
 
   var _styleElem = _htmlDocument.createElement('style');
   _styleElem.innerHTML = _style;
@@ -145,7 +171,7 @@ Documentations.prototype.documentation = function() {
   _bodyArray.push(_ulElem); // Possible to add more Elements to body
 
   this._documentationsdocumentation.append(_headArray, _bodyArray);
-
+*/
   return this._documentationsdocumentation;
 }
 
