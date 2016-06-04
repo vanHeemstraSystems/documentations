@@ -137,41 +137,81 @@ Documentations.prototype.documentation = function() {
     "text/css");
   _styleElem.setAttribute("href",
     "../../../assets/asset/tether/dist/css/tether.min.css");
-  console.log('++++++++++++++ documentations documentation - documentation _styleElem: ',
+  console.log('documentations documentation - documentation _styleElem: ',
     _styleElem)
 
   _styleArray.push(_styleElem);
 
-/*
-
-  var _styleElem = _htmlDocument.createElement('style');
-  _styleElem.innerHTML = _style;
-  console.log('documentations - documentation _styleElem: ',
+  /* Style: Bootstrap */
+  var _styleElem = _htmlDocument.createElement('link');
+  console.log('documentations documentation - documentation _styleElem: ',
+    _styleElem)
+  _styleElem.setAttribute("rel",
+    "stylesheet");
+  _styleElem.setAttribute("type",
+    "text/css");
+  _styleElem.setAttribute("href",
+    "../../../assets/asset/bootstrap/dist/css/bootstrap.min.css");
+  console.log('documentations documentation - documentation _styleElem: ',
     _styleElem)
 
-  console.log('documentations - documentation _titleElem: ', _titleElem)
-  _headArray.push(_titleElem); 
-  _headArray.push(_styleElem); // Possible to add more Elements to head 
- 
-  // Create a Node that contains the Links to go into the Body of the HTML Document 
-  var _ulElem = _htmlDocument.createElement('ul');
-  console.log('documentations - documentation _ulElem: ',
-    _ulElem)
-  var _liElem = _htmlDocument.createElement('li');
-  console.log('documentations - documentation _liElem: ',
-    _liElem)
-  var _aElem = _htmlDocument.createElement('a');
-  console.log('documentations - documentation _aElem: ',
-    _aElem)
-  _aElem.setAttribute("href", "./" + _directory + "/" + _document);
-  _aElem.innerHTML = _linktitle;
+  _styleArray.push(_styleElem);
+
+  /* Style: inline */
+  var _styleElem = _htmlDocument.createElement('link');
+  console.log('documentations documentation - documentation _styleElem: ',
+    _styleElem)
+  _styleElem.innerHTML = _style;
+  console.log('documentations documentation - documentation _styleElem: ',
+    _styleElem)
+
+  _styleArray.push(_styleElem);
+
+  /* Head */
+  _headArray.push(_titleElem);
+
+  _styleArray.forEach(function(styleElem) {
+    _headArray.push(styleElem); // Possible to add more elements to head
+  }, _headArray);
+
+  console.log('documentations documentation - documentation _headArray: ',
+    _headArray)
+
+  /*
+   * Body
+   */
+
+  /* Navbar */
+  var _navElem = _htmlDocument.createElement("nav");
+  _navElem.setAttribute("class",
+    "navbar navbar-light bg-faded");
+    
+  var _ulElem = _htmlDocument.createElement("ul");
+  _ulElem.setAttribute("class",
+    "nav navbar-nav");
+
+  var _liElem = _htmlDocument.createElement("li");
+  _liElem.setAttribute("class",
+    "nav-item active");
+
+  var _aElem = _htmlDocument.createElement("a");
+  _aElem.setAttribute("class",
+    "nav-link");
+  _aElem.setAttribute("href",
+    "#");
+  _aElem.innerHTML = _title; 
+
   _liElem.appendChild(_aElem);
   _ulElem.appendChild(_liElem);
+  _navElem.appendChild(_ulElem);
 
-  _bodyArray.push(_ulElem); // Possible to add more Elements to body
+  _bodyArray.push(_navElem);
 
-  this._documentationsdocumentation.append(_headArray, _bodyArray);
-*/
+
+
+
+
+
   return this._documentationsdocumentation;
 }
 
