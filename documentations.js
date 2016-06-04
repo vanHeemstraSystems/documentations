@@ -207,7 +207,37 @@ Documentations.prototype.documentation = function() {
 
   _bodyArray.push(_navElem);
 
+  /* Container */
+  var _divElem = _htmlDocument.createElement("div");
+  _divElem.setAttribute("class",
+    "container")
 
+  /* List */
+  var _ulElem = _htmlDocument.createElement('ul');
+  _ulElem.setAttribute("class",
+    "list-group");
+  console.log('documentations documentation - documentation _ulElem: ',
+    _ulElem)
+
+  var _liElem = _htmlDocument.createElement('li');
+  _liElem.setAttribute("class",
+    "list-group-item");
+  console.log('documentations documentation - documentation _liElem: ',
+	_liElem)
+
+  var _aElem = _htmlDocument.createElement('a');
+  console.log('documentations documentation - documentation _aElem: ',
+    _aElem)
+
+  _aElem.setAttribute("href", "./" + _directory + "/" + _document);
+  _aElem.innerHTML = _linktitle;
+  _liElem.appendChild(_aElem);
+  _ulElem.appendChild(_liElem);
+  _divElem.appendChild(_ulElem);
+
+  _bodyArray.push(_divElem); // Possible to add more elements to body
+  console.log('documentations documentation - documentation _bodyArray: ',
+    _bodyArray)
 
 
 
