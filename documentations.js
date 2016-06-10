@@ -90,8 +90,11 @@ Documentations.prototype.settitle = function(fnOrValue) {
  */
 Documentations.prototype.documentation = function() {
   console.log('documentations documentation called')
-  var _document = this.document();
-  var _directory = this.directory();
+  /* Creates the ./documentations/documentations.html page */
+  var _document = 'documentations.html'; // this.document(); /* The _document should be 'documentations.html' */
+  var _directory = 'documentations'; // this.directory(); /* The _directory should be 'documentations' */
+  var _subdirectory = 'documentation';
+  var _subdocument = 'documentation.html';
   var _proxies = this.proxies();
   var _filepath = this.filepath();
   var _title = this.title();
@@ -104,14 +107,14 @@ Documentations.prototype.documentation = function() {
   var _path = _proxies().proxy().libraries().library().path();
 
   this._documentationsdocumentation = new DocumentationsDocumentation();
-
   /* START OPENING UP ALL BELOW LOGIC STEP BY STEP */
+  console.log('documentations documentation ------------------- CHECKPOINT 000 --------------------- OK')
 
-  console.log('documentations documentation - _document: ', _document) // 'documentation.html' 
+  console.log('documentations documentation - _document: ', _document) 
   this._documentationsdocumentation.setfilename(_document);
 
   console.log('documentations documentation - _path.join(_filepath, _directory): ', _path.join(_filepath, _directory))  
-  this._documentationsdocumentation.setfilepath(_path.join(_filepath, _directory));
+  this._documentationsdocumentation.setfilepath(_path.join(_filepath, _directory)); // The _directory should be '.\docs\documentations' */
 
   this._documentationsdocumentation.setproxies(_proxies);
   this._documentationsdocumentation.append = this.append; // Assign the function, don't call it
@@ -159,7 +162,7 @@ Documentations.prototype.documentation = function() {
 
   /* Style: Bootstrap - sticky footer */
   var _styleElem = _htmlDocument.createElement('link');
-  console.log('systems system execute - documentation _styleElem: ',
+  console.log('documentations documentation - documentation _styleElem: ',
     _styleElem)
   _styleElem.setAttribute("rel",
     "stylesheet");
@@ -167,7 +170,7 @@ Documentations.prototype.documentation = function() {
     "text/css");
   _styleElem.setAttribute("href",
     "../../../assets/asset/bootstrap/dist/css/sticky-footer-navbar.css");
-  console.log('systems system execute - documentation _styleElem: ',
+  console.log('documentations documentation - documentation _styleElem: ',
     _styleElem)
 
   _styleArray.push(_styleElem);
@@ -244,7 +247,14 @@ Documentations.prototype.documentation = function() {
   console.log('documentations documentation - documentation _aElem: ',
     _aElem)
 
-  _aElem.setAttribute("href", "./" + _directory + "/" + _document);
+  console.log('documentations documentation ------------------- CHECKPOINT 001 ---------------------')
+  /* The _subdirectory should be 'documentation' */
+  /* The _subdocument should be 'documentation.html' */
+  console.log('documentations documentation - href:', "./" + _subdirectory + "/" + _subdocument)
+
+  console.log('documentations documentation ------------------- CHECKPOINT 002 ---------------------')
+
+  _aElem.setAttribute("href", "./" + _subdirectory + "/" + _subdocument);
   _aElem.innerHTML = _linktitle;
   _liElem.appendChild(_aElem);
   _ulElem.appendChild(_liElem);
