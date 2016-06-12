@@ -1,102 +1,102 @@
 /*
- * Filename: sequencediagram.js
+ * Filename: system.js
  */
-var SequenceDiagramSystem = require(__dirname+'/system/system.js');
+var SystemUnknown = require(__dirname+'/unknown/unknown.js');
 
 var self = this;
 
 /**
- * Create a new SequenceDiagram that let users create sub-sequencediagram.
- * @return {SequenceDiagram}
+ * Create a new System that let users create sub-system.
+ * @return {System}
  */
-function SequenceDiagram() {
-  self._directory = 'sequencediagram';
-  self._document = 'sequencediagram.html';
+function System() {
+  self._directory = 'system';
+  self._document = 'system.html';
   self._filename = ''; // Will be set
   self._filepath = ''; // Will be set
   self._proxies = {}; // Will be set
-  self._linktitle = 'System';
+  self._linktitle = 'Unknown';
   self._style = 'body { background-color: #ffffff; }'; // Default   
-  self._title = 'Sequence Diagram'; // Default
+  self._title = 'System'; // Default
 }
 
-SequenceDiagram.prototype.directory = function() {
+System.prototype.directory = function() {
   return self._directory;
 }
 
-SequenceDiagram.prototype.setdirectory = function(fnOrValue) {
+System.prototype.setdirectory = function(fnOrValue) {
   self._directory = fnOrValue;
 }
 
-SequenceDiagram.prototype.document = function() {
+System.prototype.document = function() {
   return self._document;
 }
 
-SequenceDiagram.prototype.setdocument = function(fnOrValue) {
+System.prototype.setdocument = function(fnOrValue) {
   self._document = fnOrValue;
 }
 
-SequenceDiagram.prototype.filename = function() {
+System.prototype.filename = function() {
   return self._filename;
 }
 
-SequenceDiagram.prototype.setfilename = function(fnOrValue) {
+System.prototype.setfilename = function(fnOrValue) {
   self._filename = fnOrValue;
 }
 
-SequenceDiagram.prototype.filepath = function() {
+System.prototype.filepath = function() {
   return self._filepath;
 }
 
-SequenceDiagram.prototype.setfilepath = function(fnOrValue) {
+System.prototype.setfilepath = function(fnOrValue) {
   self._filepath = fnOrValue;
 }
 
-SequenceDiagram.prototype.linktitle = function() {
+System.prototype.linktitle = function() {
   return self._linktitle;
 }
 
-SequenceDiagram.prototype.setlinktitle = function(fnOrValue) {
+System.prototype.setlinktitle = function(fnOrValue) {
   self._linktitle = fnOrValue;
 }
 
-SequenceDiagram.prototype.proxies = function() {
+System.prototype.proxies = function() {
   return self._proxies;
 }
 
-SequenceDiagram.prototype.setproxies = function(fnOrValue) {
+System.prototype.setproxies = function(fnOrValue) {
   self._proxies = fnOrValue;
 }
 
-SequenceDiagram.prototype.style = function() {
+System.prototype.style = function() {
   return self._style;
 }
 
-SequenceDiagram.prototype.setstyle = function(fnOrValue) {
+System.prototype.setstyle = function(fnOrValue) {
   self._style = fnOrValue;
 }
 
-SequenceDiagram.prototype.title = function() {
+System.prototype.title = function() {
   return self._title;
 }
 
-SequenceDiagram.prototype.settitle = function(fnOrValue) {
+System.prototype.settitle = function(fnOrValue) {
   self._title = fnOrValue;
 }
 
-SequenceDiagram.prototype.append = function() {} // Will be set
+System.prototype.append = function() {} // Will be set
 
-SequenceDiagram.prototype.buildHtml = function() {} // Will be set
+System.prototype.buildHtml = function() {} // Will be set
 
-SequenceDiagram.prototype.ensureExists = function() {} // Will be set
+System.prototype.ensureExists = function() {} // Will be set
 
-SequenceDiagram.prototype.system = function() {
-  console.log('documentations documentation uml sequencediagram system called')
+System.prototype.unknown = function() {
+  console.log('documentations documentation unknown called')
   /* Creates the ./documentations/documentation/documentation.html page */
-  var _document = 'sequencediagram.html'; // this.document(); /* The _document should be 'sequencediagram.html' */
-  var _directory = 'sequencediagram'; // this.directory(); /* The _directory should be 'sequencediagram' */
-  var _subdirectory = 'system';
-  var _subdocument = 'system.html';
+  var _document = 'system.html'; // this.document(); /* The _document should be 'system.html' */
+  var _directory = 'system'; // this.directory(); /* The _directory should be 'system' */
+  var _subdirectory = 'unknown';
+  var _subdocument = 'unknown.html';
   var _proxies = this.proxies();
   var _filepath = this.filepath();
   var _title = this.title();
@@ -108,20 +108,20 @@ SequenceDiagram.prototype.system = function() {
   var _bodyArray = [];
   var _path = _proxies().proxy().libraries().library().path();
 
-  this._sequencediagramsystem = new SequenceDiagramSystem();
+  this._systemunknown = new SystemUnkown();
   /* START OPENING UP ALL BELOW LOGIC STEP BY STEP */
-  console.log('documentations documentation uml sequencediagram ------------------- CHECKPOINT 000 --------------------- OK')
+  console.log('documentations documentation uml sequencediagram system ------------------- CHECKPOINT 000 --------------------- OK')
 
-  console.log('documentations documentation uml sequencediagram - _document: ', _document) 
-  this._sequencediagramsystem.setfilename(_document);
+  console.log('documentations documentation uml sequencediagram system - _document: ', _document) 
+  this._systemunknown.setfilename(_document);
 
-  console.log('documentations documentation sequencediagram uml - _path.join(_filepath, _directory): ', _path.join(_filepath, _directory))  
-  this._sequencediagramsystem.setfilepath(_path.join(_filepath, _directory)); // The _directory should be '.\docs\documentations' */
+  console.log('documentations documentation uml sequencediagram system - _path.join(_filepath, _directory): ', _path.join(_filepath, _directory))  
+  this._systemunknown.setfilepath(_path.join(_filepath, _directory)); // The _directory should be '.\docs\documentations' */
 
-  this._sequencediagramsystem.setproxies(_proxies);
-  this._sequencediagramsystem.append = this.append; // Assign the function, don't call it
-  this._sequencediagramsystem.buildHtml = this.buildHtml; // Assign the function, don't call it
-  this._sequencediagramsystem.ensureExists = this.ensureExists; // Assign the function, don't call it
+  this._systemunknown.setproxies(_proxies);
+  this._systemunknown.append = this.append; // Assign the function, don't call it
+  this._systemunknown.buildHtml = this.buildHtml; // Assign the function, don't call it
+  this._systemunknown.ensureExists = this.ensureExists; // Assign the function, don't call it
 
   var _jsdom = _proxies().proxy().libraries().library().jsdom();
   var _htmlDocument = _jsdom.jsdom().implementation.createHTMLDocument('');
@@ -129,12 +129,12 @@ SequenceDiagram.prototype.system = function() {
   /* Title: System */
   var _titleElem = _htmlDocument.createElement('title');
   _titleElem.innerHTML = _title;
-  console.log('documentations documentation uml sequencediagram - documentation _titleElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _titleElem: ',
     _titleElem)
 
   /* Style: Tether */
   var _styleElem = _htmlDocument.createElement('link');
-  console.log('documentations documentation uml sequencediagram - documentation _styleElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _styleElem: ',
     _styleElem)
   _styleElem.setAttribute("rel",
     "stylesheet");
@@ -142,14 +142,14 @@ SequenceDiagram.prototype.system = function() {
     "text/css");
   _styleElem.setAttribute("href",
     "../../../../../../assets/asset/tether/dist/css/tether.min.css");
-  console.log('documentations documentation uml sequencediagram - documentation _styleElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _styleElem: ',
     _styleElem)
 
   _styleArray.push(_styleElem);
 
   /* Style: Bootstrap */
   var _styleElem = _htmlDocument.createElement('link');
-  console.log('documentations documentation uml sequencediagram - documentation _styleElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _styleElem: ',
     _styleElem)
   _styleElem.setAttribute("rel",
     "stylesheet");
@@ -157,14 +157,14 @@ SequenceDiagram.prototype.system = function() {
     "text/css");
   _styleElem.setAttribute("href",
     "../../../../../../assets/asset/bootstrap/dist/css/bootstrap.min.css");
-  console.log('documentations documentation uml sequencediagram - documentation _styleElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _styleElem: ',
     _styleElem)
 
   _styleArray.push(_styleElem);
 
   /* Style: Bootstrap - sticky footer */
   var _styleElem = _htmlDocument.createElement('link');
-  console.log('documentations documentation uml sequencediagram _styleElem: ',
+  console.log('documentations documentation uml sequencediagram system _styleElem: ',
     _styleElem)
   _styleElem.setAttribute("rel",
     "stylesheet");
@@ -172,17 +172,17 @@ SequenceDiagram.prototype.system = function() {
     "text/css");
   _styleElem.setAttribute("href",
     "../../../../../../assets/asset/bootstrap/dist/css/sticky-footer-navbar.css");
-  console.log('documentations documentation uml sequencediagram _styleElem: ',
+  console.log('documentations documentation uml sequencediagram system _styleElem: ',
     _styleElem)
 
   _styleArray.push(_styleElem);
 
   /* Style: inline */
   var _styleElem = _htmlDocument.createElement('link');
-  console.log('documentations documentation uml sequencediagram - documentation _styleElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _styleElem: ',
     _styleElem)
   _styleElem.innerHTML = _style;
-  console.log('documentations documentation uml sequencediagram - documentation _styleElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _styleElem: ',
     _styleElem)
 
   _styleArray.push(_styleElem);
@@ -194,7 +194,7 @@ SequenceDiagram.prototype.system = function() {
     _headArray.push(styleElem); // Possible to add more elements to head
   }, _headArray);
 
-  console.log('documentations documentation uml sequencediagram - documentation _headArray: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _headArray: ',
     _headArray)
 
   /*
@@ -236,25 +236,25 @@ SequenceDiagram.prototype.system = function() {
   var _ulElem = _htmlDocument.createElement('ul');
   _ulElem.setAttribute("class",
     "list-group");
-  console.log('documentations documentation uml sequencediagram - documentation _ulElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _ulElem: ',
     _ulElem)
 
   var _liElem = _htmlDocument.createElement('li');
   _liElem.setAttribute("class",
     "list-group-item");
-  console.log('documentations documentation uml sequencediagram - documentation _liElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _liElem: ',
   _liElem)
 
   var _aElem = _htmlDocument.createElement('a');
-  console.log('documentations documentation uml sequencediagram - documentation _aElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _aElem: ',
     _aElem)
 
-  console.log('documentations documentation uml sequencediagram ------------------- CHECKPOINT 001 ---------------------')
+  console.log('documentations documentation uml sequencediagram system ------------------- CHECKPOINT 001 ---------------------')
   /* The _subdirectory should be 'documentation' */
   /* The _subdocument should be 'documentation.html' */
-  console.log('documentations documentation uml sequencediagram - href:', "./" + _subdirectory + "/" + _subdocument)
+  console.log('documentations documentation uml sequencediagram system - href:', "./" + _subdirectory + "/" + _subdocument)
 
-  console.log('documentations documentation uml sequencediagram ------------------- CHECKPOINT 002 ---------------------')
+  console.log('documentations documentation uml sequencediagram system ------------------- CHECKPOINT 002 ---------------------')
 
   _aElem.setAttribute("href", "./" + _subdirectory + "/" + _subdocument);
   _aElem.innerHTML = _linktitle;
@@ -263,7 +263,7 @@ SequenceDiagram.prototype.system = function() {
   _divElem.appendChild(_ulElem);
 
   _bodyArray.push(_divElem); // Possible to add more elements to body
-  console.log('documentations documentation uml sequencediagram - documentation _bodyArray: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _bodyArray: ',
     _bodyArray)
 
   /* Footer */
@@ -289,7 +289,7 @@ SequenceDiagram.prototype.system = function() {
   var _scriptElem = _htmlDocument.createElement('script');
   _scriptElem.setAttribute("type", "text/javascript");
   _scriptElem.setAttribute("src", "../../../../../../assets/asset/jquery/dist/js/jquery.min.js");
-  console.log('documentations documentation uml sequencediagram - documentation _scriptElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _scriptElem: ',
     _scriptElem)
 
   _scriptArray.push(_scriptElem);
@@ -298,7 +298,7 @@ SequenceDiagram.prototype.system = function() {
   var _scriptElem = _htmlDocument.createElement('script');
   _scriptElem.setAttribute("type", "text/javascript");
   _scriptElem.setAttribute("src", "../../../../../../assets/asset/tether/dist/js/tether.min.js");
-  console.log('documentations documentation uml sequencediagram - documentation _scriptElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _scriptElem: ',
     _scriptElem)
 
   _scriptArray.push(_scriptElem);
@@ -307,7 +307,7 @@ SequenceDiagram.prototype.system = function() {
   var _scriptElem = _htmlDocument.createElement('script');
   _scriptElem.setAttribute("type", "text/javascript");
   _scriptElem.setAttribute("src", "../../../../../../assets/asset/bootstrap/dist/js/bootstrap.min.js");
-  console.log('documentations documentation uml sequencediagram - documentation _scriptElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _scriptElem: ',
     _scriptElem)
 
   _scriptArray.push(_scriptElem);
@@ -316,7 +316,7 @@ SequenceDiagram.prototype.system = function() {
   var _scriptElem = _htmlDocument.createElement('script');
   _scriptElem.setAttribute("type", "text/javascript");
   _scriptElem.setAttribute("src", "../../../../../../assets/asset/raphael/dist/js/raphael.min.js");
-  console.log('documentations documentation uml sequencediagram - documentation _scriptElem: ',
+  console.log('documentations documentation uml sequencediagram system - documentation _scriptElem: ',
     _scriptElem)
 
   _scriptArray.push(_scriptElem);
@@ -325,9 +325,9 @@ SequenceDiagram.prototype.system = function() {
     _bodyArray.push(scriptElem);
   }, _bodyArray);
 
-  this._sequencediagramsystem.append(_headArray, _bodyArray);
+  this._systemunknown.append(_headArray, _bodyArray);
 
-  return this._sequencediagramsystem;
+  return this._systemunknown;
 }
 
-module.exports = SequenceDiagram;
+module.exports = System;
